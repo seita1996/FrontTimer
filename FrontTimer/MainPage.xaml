@@ -9,6 +9,10 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button Content="Start" HorizontalAlignment="Left" Margin="118,102,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="hello" Margin="233,233,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button x:Name="StartStopbutton" Content="Start" Margin="44,233,0,0" VerticalAlignment="Top" Click="Start_Stop_Button_Click"/>
+        <Button x:Name="Resetbutton" Content="Reset" Margin="134,233,0,0" VerticalAlignment="Top" Click="Reset_Button_Click"/>
+        <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Center" Margin="0,50,0,0" Text="00:00:00" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="72" FontFamily="Directive Four"/>
+        <Slider x:Name="slider" HorizontalAlignment="Center" Margin="0,296,0,0" VerticalAlignment="Top" Width="219" ValueChanged="Timer_Slider_ValueChanged"/>
     </Grid>
 </Page>
