@@ -33,15 +33,6 @@ namespace FrontTimer
             this.InitializeComponent();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            MediaElement mediaElement = new MediaElement();
-            var synth = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
-            Windows.Media.SpeechSynthesis.SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("時間じゃよ");
-            mediaElement.SetSource(stream, stream.ContentType);
-            mediaElement.Play();
-        }
-
         private void Timer_Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             Slider slider = sender as Slider;
@@ -83,11 +74,23 @@ namespace FrontTimer
             stopwatch.Reset();
         }
 
-        private void timer_Tick(object sender, object e)
+        private async void timer_Tick(object sender, object e)
         {
             int pastSeconds = (int)this.stopwatch.Elapsed.TotalSeconds;
-            TimeSpan previewTime = new TimeSpan(0, 0, countMaxSeconds - pastSeconds);
-            timerTextBlock.Text = previewTime.ToString(@"hh\:mm\:ss");
+            int remainingTime = countMaxSeconds - pastSeconds;
+            if (remainingTime >= 0)
+            {
+                TimeSpan previewTime = new TimeSpan(0, 0, remainingTime);
+                timerTextBlock.Text = previewTime.ToString(@"hh\:mm\:ss");
+            }
+            else if (stopwatch.IsRunning)
+            {
+                MediaElement mediaElement = new MediaElement();
+                var synth = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
+                Windows.Media.SpeechSynthesis.SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("時間じゃよ");
+                mediaElement.SetSource(stream, stream.ContentType);
+                mediaElement.Play();
+            }
         }
     }
 }
