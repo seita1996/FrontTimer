@@ -26,7 +26,7 @@ namespace FrontTimer
     {
         private Stopwatch stopwatch = new Stopwatch();
         private DispatcherTimer timer;
-        private int countMaxSeconds = 60 * 30;
+        private int countMaxSeconds = 60 * 10;
 
         public MainPage()
         {
@@ -54,6 +54,8 @@ namespace FrontTimer
 
                 stopwatch.Stop();
                 StartStopbutton.Content = "Start";
+                timerTextBlock.Foreground = new SolidColorBrush(Windows.UI.Color.FromArgb(0xFF, 0x33, 0x95, 0xF7));
+                Resetbutton.IsEnabled = true;
             }
             else
             {
@@ -66,6 +68,7 @@ namespace FrontTimer
                 this.timer.Start();
                 stopwatch.Start();
                 StartStopbutton.Content = "Stop";
+                Resetbutton.IsEnabled = false;
             }
         }
 
@@ -90,6 +93,7 @@ namespace FrontTimer
                 Windows.Media.SpeechSynthesis.SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("時間じゃよ");
                 mediaElement.SetSource(stream, stream.ContentType);
                 mediaElement.Play();
+                timerTextBlock.Foreground = new SolidColorBrush(Windows.UI.Color.FromArgb(0xFF, 0xFF, 0x00, 0x00));
             }
         }
     }
