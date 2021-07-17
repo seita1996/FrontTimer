@@ -27,18 +27,47 @@ namespace FrontTimer
         private Stopwatch stopwatch = new Stopwatch();
         private DispatcherTimer timer;
         private int countMaxSeconds = 60 * 10;
+        private MediaElement mediaElement = new MediaElement();
+        private int hour = 0;
+        private int minute = 10;
+        private int second = 0;
 
         public MainPage()
         {
             this.InitializeComponent();
         }
 
-        private void Timer_Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void Hour_Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             Slider slider = sender as Slider;
             if (slider != null)
             {
-                this.countMaxSeconds = (int)slider.Value * 60;
+                this.hour = (int)slider.Value * 60 * 60;
+                this.countMaxSeconds = this.hour + this.minute + this.second;
+                TimeSpan previewTime = new TimeSpan(0, 0, this.countMaxSeconds);
+                timerTextBlock.Text = previewTime.ToString(@"hh\:mm\:ss");
+            }
+        }
+
+        private void Minute_Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            Slider slider = sender as Slider;
+            if (slider != null)
+            {
+                this.minute = (int)slider.Value * 60;
+                this.countMaxSeconds = this.hour + this.minute + this.second;
+                TimeSpan previewTime = new TimeSpan(0, 0, this.countMaxSeconds);
+                timerTextBlock.Text = previewTime.ToString(@"hh\:mm\:ss");
+            }
+        }
+
+        private void Second_Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            Slider slider = sender as Slider;
+            if (slider != null)
+            {
+                this.second = (int)slider.Value;
+                this.countMaxSeconds = this.hour + this.minute + this.second;
                 TimeSpan previewTime = new TimeSpan(0, 0, this.countMaxSeconds);
                 timerTextBlock.Text = previewTime.ToString(@"hh\:mm\:ss");
             }
@@ -72,7 +101,7 @@ namespace FrontTimer
             }
         }
 
-        private async void Reset_Button_Click(object sender, RoutedEventArgs e)
+        private void Reset_Button_Click(object sender, RoutedEventArgs e)
         {
             stopwatch.Reset();
         }
@@ -88,7 +117,6 @@ namespace FrontTimer
             }
             else if (stopwatch.IsRunning)
             {
-                MediaElement mediaElement = new MediaElement();
                 var synth = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
                 Windows.Media.SpeechSynthesis.SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("時間じゃよ");
                 mediaElement.SetSource(stream, stream.ContentType);

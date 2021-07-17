@@ -9,7 +9,7 @@
   <Identity
     Name="cfd3aadc-dc76-40ad-8575-56f08f9c41b1"
     Publisher="CN=SEITA"
-    Version="1.0.1.0" />
+    Version="1.0.3.0" />
 
   <mp:PhoneIdentity PhoneProductId="cfd3aadc-dc76-40ad-8575-56f08f9c41b1" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

@@ -14,6 +14,11 @@
             <Button x:Name="Resetbutton" Content="Reset" Margin="12,140,0,0" VerticalAlignment="Top" Click="Reset_Button_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FlowDirection="RightToLeft" Width="165" Height="50" HorizontalAlignment="Right" Canvas.ZIndex="-1" Background="#33445259" FontSize="24" FontWeight="Bold"/>
         </StackPanel>
         <TextBlock x:Name="timerTextBlock" HorizontalAlignment="Center" Margin="0,32,0,0" Text="00:00:00" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="72" FontFamily="Furore" FocusVisualPrimaryBrush="Black" FontWeight="Normal" Foreground="#FF3395F7"/>
-        <Slider x:Name="slider" Margin="35,231,35,0" VerticalAlignment="Top" Maximum="120" Value="10" ValueChanged="Timer_Slider_ValueChanged"/>
+        <Slider x:Name="sliderHour" Margin="161,231,35,0" VerticalAlignment="Top" Maximum="12" Value="0" ValueChanged="Hour_Slider_ValueChanged"/>
+        <Slider x:Name="sliderMinute" Margin="161,296,35,0" VerticalAlignment="Top" Maximum="59" Value="10" ValueChanged="Minute_Slider_ValueChanged"/>
+        <Slider x:Name="sliderSecond" Margin="161,362,35,0" VerticalAlignment="Top" Maximum="59" Value="0" ValueChanged="Second_Slider_ValueChanged"/>
+        <TextBlock x:Name="hourTitle" HorizontalAlignment="Left" Margin="50,231,0,0" Text="Hour" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock x:Name="minuteTitle" HorizontalAlignment="Left" Margin="50,296,0,0" Text="Mimute" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"/>
+        <TextBlock x:Name="secondTitle" HorizontalAlignment="Left" Margin="50,362,0,0" Text="Second" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"/>
     </Grid>
 </Page>
