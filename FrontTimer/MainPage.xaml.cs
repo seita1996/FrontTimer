@@ -39,10 +39,10 @@ namespace FrontTimer
 
         private void Hour_Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            Slider slider = sender as Slider;
-            if (slider != null)
+            Slider slider_h = sender as Slider;
+            if (slider_h != null)
             {
-                this.hour = (int)slider.Value * 60 * 60;
+                this.hour = (int)slider_h.Value * 60 * 60;
                 this.countMaxSeconds = this.hour + this.minute + this.second;
                 TimeSpan previewTime = new TimeSpan(0, 0, this.countMaxSeconds);
                 timerTextBlock.Text = previewTime.ToString(@"hh\:mm\:ss");
@@ -51,10 +51,10 @@ namespace FrontTimer
 
         private void Minute_Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            Slider slider = sender as Slider;
-            if (slider != null)
+            Slider slider_m = sender as Slider;
+            if (slider_m != null)
             {
-                this.minute = (int)slider.Value * 60;
+                this.minute = (int)slider_m.Value * 60;
                 this.countMaxSeconds = this.hour + this.minute + this.second;
                 TimeSpan previewTime = new TimeSpan(0, 0, this.countMaxSeconds);
                 timerTextBlock.Text = previewTime.ToString(@"hh\:mm\:ss");
@@ -63,10 +63,10 @@ namespace FrontTimer
 
         private void Second_Slider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            Slider slider = sender as Slider;
-            if (slider != null)
+            Slider slider_s = sender as Slider;
+            if (slider_s != null)
             {
-                this.second = (int)slider.Value;
+                this.second = (int)slider_s.Value;
                 this.countMaxSeconds = this.hour + this.minute + this.second;
                 TimeSpan previewTime = new TimeSpan(0, 0, this.countMaxSeconds);
                 timerTextBlock.Text = previewTime.ToString(@"hh\:mm\:ss");
